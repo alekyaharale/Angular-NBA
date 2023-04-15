@@ -1,0 +1,64 @@
+<div class="container mt-3 g-0">
+    <h1 class="mb-5">NBA Score Tracking App</h1>
+
+    <div class="row mx-0 mt-4">
+        <div class="form-group col-md-6 px-0">
+            <label for="component_id">Track Team</label>
+            <select class="form-control" id="teamSelect" [(ngModel)]="selected_team">
+            <option [value]="" selected>Select</option>
+                <option  *ngFor="let team of TEAMS_DATA" [value]="team.id">{{team.full_name}}</option>  
+            </select>
+        </div>
+        <div class="col-md-6 my-auto">
+            <button class="btn btn-primary mt-3" id="trackBtn" (click)="teamTracker()">
+                Track Team
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+<div class="row mx-0">
+        <div class="col-md-12  wrapper" >
+            <div class="card shadow"  *ngFor="let team of DISPLAY_DATA">
+                    <div class="card-header d-flex justify-content-between align-items-start">
+                        <div>
+                           <h5 class="card-title">
+                            {{team.full_name}}[{{team.abbreviation}}]
+                           </h5>
+                        <span>{{team.conference}}ern Conference</span>
+                        </div>
+
+                        <button type="button" id="remove{{team.abbreviation}}" class="btn-sm" style="background: transparent;outline: none;border-width: 0" (click)="removeTeam(team.id)" >
+                            <span class="material-icons-outlined">close</span>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                       <div class="d-flex justify-content-between" style="flex-wrap: wrap;">
+                        <div>
+                            <p>Results of past 12 days:</p>
+                            <div class="d-flex" style="gap: 3px;flex-wrap: wrap;">
+                                <p class="d-flex result-badge" *ngFor="let res of team.win_or_loss"  [ngStyle]="{'background-color': res == 'L' ? 'red' : 'green'}">
+                                    {{res}}
+                                </p>
+                            </div>
+                            <p>Avg pts scored:<span> {{team.avg_points_scored}}</span></p>
+                            <p>Avg pts conceded:<span> {{team.avg_points_conceded}}</span></p>
+                        </div>
+                        <div>
+                            <img src="https://interstate21.com/nba-logos/{{team.abbreviation}}.png" alt="" height="100px">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-footer">
+                       <button class="btn btn-success" id="results{{team.abbreviation}}" (click)="seeAllResults(team)">
+                        See game results &#62;&#62;
+                    </button>
+                    </div>
+                    </div>
+        </div>
+    </div>
+</div>
+
