@@ -5,7 +5,7 @@ import { MatchResultsComponent } from './components/match-results/match-results.
 
 const routes: Routes = [
   { path: '', component: TeamsComponent },
-  { path: 'matchResults/:teamId', component: MatchResultsComponent }
+  { path: 'results/:teamCode', component: MatchResultsComponent }
 
 ];
 

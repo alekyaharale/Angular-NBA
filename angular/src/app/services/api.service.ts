@@ -13,11 +13,11 @@ export class ApiService {
     'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
   });
 
-  api_url = 'https://free-nba.p.rapidapi.com';
+  CUSTOM_API = 'https://free-nba.p.rapidapi.com';
 
 
   getTeams(): Observable<TeamsApiResponse> {
-    return this.http.get<TeamsApiResponse>(`${this.api_url}/teams`, { headers: this.header });
+    return this.http.get<TeamsApiResponse>(`${this.CUSTOM_API}/teams`, { headers: this.header });
   }
 
   getMatches(teamId: number, dates: string[]):Observable<MatchesApiResponse> {
@@ -29,6 +29,6 @@ export class ApiService {
       param = param.append('dates[]', date)
     });
 
-    return this.http.get<MatchesApiResponse>(`${this.api_url}/games`, { headers: this.header, params: param });
+    return this.http.get<MatchesApiResponse>(`${this.CUSTOM_API}/games`, { headers: this.header, params: param });
   }
 }

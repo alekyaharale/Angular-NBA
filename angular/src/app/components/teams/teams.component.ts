@@ -28,8 +28,9 @@ export class TeamsComponent {
   ngOnInit(){
     this.teamsData()
     this.dataService.LIST_DATA.subscribe((ele:matchData[]) => {
-      console.log(ele)
-      this.DISPLAY_DATA = ele
+      // console.log(ele)
+      if(ele)
+       this.DISPLAY_DATA = ele
       }
     )
   }
@@ -108,7 +109,7 @@ export class TeamsComponent {
       this.selected_team = ''
     }
   
-    console.log(this.DISPLAY_DATA)
+    // console.log(this.DISPLAY_DATA)
 
   }
 
@@ -128,14 +129,14 @@ export class TeamsComponent {
 
   removeTeam(id: number): void {
     this.DISPLAY_DATA = this.DISPLAY_DATA.filter((team: matchData) => { return team.id !== id });
-    console.log(this.DISPLAY_DATA)
+    // console.log(this.DISPLAY_DATA)
   }
 
   seeAllResults(team:matchData): void {
     this.dataService.TEAM_DATA.next(team)
     this.dataService.LIST_DATA.next(this.DISPLAY_DATA)
 
-    this.router.navigate(['matchResults/'+team.id])
+    this.router.navigate(['results/'+team.id])
   }
 
 
